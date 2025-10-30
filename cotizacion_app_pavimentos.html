@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Aplicación de Inspección de Pavimentos</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 2cm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 28cm;
+            margin: 0 auto;
+            padding: 2cm;
+            background: #fff;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1e3a5f;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #1e3a5f;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #1e3a5f;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            margin: 0.5rem 0;
+        }
+
+        .info-box strong {
+            color: #1e3a5f;
+            display: inline-block;
+            min-width: 180px;
+        }
+
+        h2 {
+            color: #1e3a5f;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            color: #2c5f8d;
+            font-size: 1.15rem;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        p {
+            margin: 0.75rem 0;
+            text-align: justify;
+        }
+
+        ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .feature-list li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .module-section {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            page-break-inside: avoid;
+        }
+
+        .module-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+        }
+
+        .screenshot-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .screenshot-placeholder strong {
+            display: block;
+            color: #1e3a5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-style: normal;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tech-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #2c5f8d;
+        }
+
+        .tech-item strong {
+            color: #1e3a5f;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .price-box h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .timeline {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .timeline-number {
+            background: #1e3a5f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content strong {
+            color: #1e3a5f;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #1e3a5f;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffa726;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+        }
+
+        .footer .contact {
+            margin-top: 1rem;
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 3rem;
+            padding-top: 1rem;
+        }
+
+        .signature p {
+            text-align: left;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .module-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Cotización de Desarrollo de Aplicación Web</h1>
+        <p>Sistema de Inspección y Gestión de Fallas en Pavimentos</p>
+    </div>
+
+    <!-- INFORMACIÓN GENERAL -->
+    <div class="info-box">
+        <p><strong>Cliente:</strong> Juan Sebastián Salas</p>
+        <p><strong>Fecha de Emisión:</strong> 30/oct/2025</p>
+        <p><strong>Cotización No.:</strong> 15421</p>
+        <p><strong>Validez de la Cotización:</strong> 30 días calendario a partir de la fecha de emisión</p>
+        <p><strong>Desarrollador:</strong> Miguel Rodriguez - Ingeniero Desarrollador Senior</p>
+    </div>
+
+    <!-- RESUMEN EJECUTIVO -->
+    <h2>1. Resumen Ejecutivo</h2>
+    <p>
+        Se propone el desarrollo de una <strong>aplicación web profesional para la inspección, 
+        registro y análisis de fallas en pavimentos</strong>, orientada a empresas de ingeniería civil, 
+        contratistas de obra pública y organismos de control vial. La solución permitirá optimizar 
+        los procesos de inspección en campo, centralizar la información recopilada y generar 
+        reportes analíticos que faciliten la toma de decisiones para el mantenimiento y 
+        rehabilitación de infraestructura vial.
+    </p>
+
+    <!-- OBJETIVOS -->
+    <h2>2. Objetivos del Proyecto</h2>
+    <ul class="feature-list">
+        <li>Digitalizar y optimizar el proceso de inspección de pavimentos en campo</li>
+        <li>Centralizar la información de múltiples proyectos y tramos viales</li>
+        <li>Facilitar el registro fotográfico y georreferenciado de fallas</li>
+        <li>Automatizar la generación de reportes y análisis estadísticos</li>
+        <li>Proporcionar una herramienta móvil-first accesible desde cualquier dispositivo</li>
+        <li>Mejorar la trazabilidad y documentación de inspecciones</li>
+    </ul>
+
+    <!-- DESCRIPCIÓN DETALLADA -->
+    <h2>3. Descripción Detallada de la Aplicación</h2>
+    
+    <div class="module-section">
+        <div class="module-header">
+            <h3 style="color: white; margin: 0;">Módulo 1: Dashboard Principal</h3>
+        </div>
+        
+        <p>
+            Panel de control intuitivo que presenta una vista consolidada del estado general de las inspecciones.
+        </p>
+        
+        <h4>Funcionalidades:</h4>
+        <ul>
+            <li><strong>Estadísticas en tiempo real:</strong> Número de fallas registradas hoy, total de proyectos activos, kilómetros inspeccionados y porcentaje de daño promedio</li>
+            <li><strong>Acciones rápidas:</strong> Botones de acceso directo a las funciones principales (Nueva falla, Proyectos, Mapa, Reportes)</li>
+            <li><strong>Actividad reciente:</strong> Lista cronológica de las últimas fallas registradas con nivel de severidad</li>
+            <li><strong>Notificaciones:</strong> Sistema de alertas para fallas críticas o proyectos que requieren atención</li>
+        </ul>
+
+    </div>
+
+    <div class="module-section">
+        <div class="module-header">
+            <h3 style="color: white; margin: 0;">Módulo 2: Gestión de Proyectos</h3>
+        </div>
+        
+        <p>
+            Sistema completo para la administración de proyectos de inspección vial, permitiendo organizar el trabajo por tramos y hacer seguimiento del progreso.
+        </p>
+        
+        <h4>Funcionalidades:</h4>
+        <ul>
+            <li><strong>Creación de proyectos:</strong> Formulario para registrar nuevos proyectos con datos completos (código, nombre, ubicación, fechas, longitud total)</li>
+            <li><strong>Gestión de tramos:</strong> Subdivisión de proyectos en tramos específicos con abscisado (Ej: Km 0+000 a Km 5+000)</li>
+            <li><strong>Estados del proyecto:</strong> Control de estado (Activo, En Pausa, Completado)</li>
+            <li><strong>Información del proyecto:</strong> Fecha de inicio, longitud total, número de tramos, cantidad de fallas registradas</li>
+            <li><strong>Barra de progreso visual:</strong> Indicador del porcentaje de inspección completado</li>
+            <li><strong>Sistema de filtros:</strong> Filtrado por estado del proyecto (Todos, Activos, Completados, En Pausa)</li>
+            <li><strong>Edición y eliminación:</strong> Opciones para modificar o eliminar proyectos existentes</li>
+        </ul>
+
+    </div>
+
+    <div class="module-section">
+        <div class="module-header">
+            <h3 style="color: white; margin: 0;">Módulo 3: Registro de Fallas (Core del Sistema)</h3>
+        </div>
+        
+        <p>
+            Módulo principal de la aplicación que permite el registro completo y detallado de fallas en pavimento directamente desde el campo.
+        </p>
+        
+        <h4>3.1 Selección de Proyecto y Tramo</h4>
+        <ul>
+            <li>Listado desplegable de proyectos activos</li>
+            <li>Selección del tramo específico donde se detectó la falla</li>
+            <li>Validación de selección antes de continuar</li>
+        </ul>
+
+        <h4>3.2 Captura Fotográfica</h4>
+        <ul>
+            <li><strong>Integración con cámara nativa:</strong> Acceso directo a la cámara del dispositivo móvil o webcam en PC</li>
+            <li><strong>Vista previa de imagen:</strong> Visualización inmediata de la foto capturada</li>
+            <li><strong>Opción de recaptura:</strong> Posibilidad de tomar nuevamente la foto si no es satisfactoria</li>
+            <li><strong>Compresión automática:</strong> Optimización de tamaño de imagen para almacenamiento eficiente</li>
+            <li><strong>Almacenamiento seguro:</strong> Guardado de imágenes en servidor con respaldo automático</li>
+        </ul>
+
+        <h4>3.3 Clasificación de la Falla</h4>
+        <ul>
+            <li><strong>Tipo de falla:</strong> Catálogo completo según normativa técnica
+                <ul style="margin-top: 0.5rem;">
+                    <li>Piel de Cocodrilo (Fatiga)</li>
+                    <li>Fisura Longitudinal</li>
+                    <li>Fisura Transversal</li>
+                    <li>Fisura de Borde</li>
+                    <li>Bache (Hueco)</li>
+                    <li>Desintegración</li>
+                    <li>Ahuellamiento</li>
+                    <li>Corrugación</li>
+                    <li>Pérdida de Agregados</li>
+                    <li>Grieta de Reflexión</li>
+                    <li>Otros (especificar)</li>
+                </ul>
+            </li>
+            <li><strong>Nivel de severidad:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Bajo - Mantenimiento preventivo</li>
+                    <li>Medio - Requiere atención pronta</li>
+                    <li>Alto - Intervención urgente</li>
+                </ul>
+            </li>
+            <li><strong>Ubicación específica:</strong> Carril Derecho, Carril Izquierdo, Carril Central, Berma, Separador</li>
+        </ul>
+
+        <h4>3.4 Geolocalización GPS</h4>
+        <ul>
+            <li><strong>Captura automática de coordenadas:</strong> Latitud y longitud con precisión de hasta 5 metros</li>
+            <li><strong>Visualización de coordenadas:</strong> Formato decimal grados (DD)</li>
+            <li><strong>Campo de abscisado:</strong> Ingreso manual de la abscisa (Ej: Km 12+450)</li>
+            <li><strong>Indicador de precisión GPS:</strong> Visualización del nivel de señal/precisión</li>
+            <li><strong>Modo offline:</strong> Capacidad de registrar sin conexión y sincronizar posteriormente</li>
+        </ul>
+
+        <h4>3.5 Mediciones de la Falla</h4>
+        <ul>
+            <li><strong>Modo Manual:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Ingreso de longitud (metros)</li>
+                    <li>Ingreso de ancho (metros)</li>
+                    <li>Cálculo automático de área (m²)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>3.6 Observaciones Adicionales</h4>
+        <ul>
+            <li>Campo de texto libre para notas del inspector</li>
+            <li>Descripción de condiciones climáticas</li>
+            <li>Nivel de tráfico en el momento de la inspección</li>
+            <li>Cualquier información relevante adicional</li>
+        </ul>
+
+        <h4>3.7 Guardado y Validación</h4>
+        <ul>
+            <li>Validación de campos obligatorios antes de guardar</li>
+            <li>Confirmación visual del registro exitoso</li>
+            <li>Opción de continuar registrando o volver al dashboard</li>
+        </ul>
+
+    </div>
+
+    <div class="module-section">
+        <div class="module-header">
+            <h3 style="color: white; margin: 0;">Módulo 4: Mapa Interactivo de Fallas</h3>
+        </div>
+        
+        <p>
+            Visualización geográfica de todas las fallas registradas mediante integración con Google Maps API.
+        </p>
+        
+        <h4>Funcionalidades:</h4>
+        <ul>
+            <li><strong>Mapa interactivo:</strong> Integración completa con Google Maps para navegación fluida</li>
+            <li><strong>Marcadores personalizados:</strong> Iconos diferenciados por nivel de severidad
+                <ul style="margin-top: 0.5rem;">
+                    <li>🔴 Rojo: Severidad Alta</li>
+                    <li>🟠 Naranja: Severidad Media</li>
+                    <li>🟢 Verde: Severidad Baja</li>
+                </ul>
+            </li>
+            <li><strong>Clusters de marcadores:</strong> Agrupación automática cuando hay múltiples fallas cercanas</li>
+            <li><strong>InfoWindow emergente:</strong> Al hacer clic en un marcador, muestra:
+                <ul style="margin-top: 0.5rem;">
+                    <li>Tipo de falla</li>
+                    <li>Severidad</li>
+                    <li>Coordenadas GPS</li>
+                    <li>Abscisado</li>
+                    <li>Foto de la falla</li>
+                    <li>Botón para ver detalles completos</li>
+                </ul>
+            </li>
+            <li><strong>Controles del mapa:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Zoom in/out</li>
+                    <li>Botón "Mi ubicación" para centrar el mapa</li>
+                    <li>Vista satelital / mapa</li>
+                </ul>
+            </li>
+            <li><strong>Sistema de filtros:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Filtrar por severidad (Todas, Severas, Moderadas, Bajas)</li>
+                    <li>Filtrar por tipo de falla</li>
+                    <li>Filtrar por proyecto</li>
+                    <li>Filtrar por rango de fechas</li>
+                </ul>
+            </li>
+            <li><strong>Leyenda visual:</strong> Explicación de colores y símbolos utilizados</li>
+            <li><strong>Lista complementaria:</strong> Listado lateral de fallas visibles en el mapa actual</li>
+        </ul>
+
+    </div>
+
+    <div class="module-section">
+        <div class="module-header">
+            <h3 style="color: white; margin: 0;">Módulo 5: Reportes y Análisis Inteligente</h3>
+        </div>
+        
+        <p>
+            Sistema avanzado de generación de reportes con análisis estadístico y visualizaciones gráficas para facilitar la toma de decisiones.
+        </p>
+        
+        <h4>5.1 Configuración de Reportes</h4>
+        <ul>
+            <li>Selección de proyecto específico o vista consolidada de todos los proyectos</li>
+            <li>Filtro por periodo de tiempo (última semana, último mes, trimestre, todo el periodo)</li>
+            <li>Selección de tramos específicos si se requiere</li>
+        </ul>
+
+        <h4>5.2 Análisis Estadístico</h4>
+        <ul>
+            <li><strong>Distribución por Severidad:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Gráfico de barras mostrando porcentaje de fallas por nivel</li>
+                    <li>Ejemplo: "58% Severo, 32% Moderado, 10% Bajo"</li>
+                </ul>
+            </li>
+            <li><strong>Ranking de tipos de falla:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Listado ordenado por frecuencia</li>
+                    <li>Número de registros y porcentaje del total</li>
+                    <li>Ejemplo: "Piel de Cocodrilo: 43 registros (35% del total)"</li>
+                </ul>
+            </li>
+            <li><strong>Análisis por ubicación:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Comparativa entre carriles (derecho, izquierdo, central)</li>
+                    <li>Identificación de tramos más afectados</li>
+                </ul>
+            </li>
+            <li><strong>Métricas de área afectada:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Total de metros cuadrados con fallas</li>
+                    <li>Porcentaje del área total inspeccionada</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>5.3 Insights Inteligentes (IA/Análisis Automático)</h4>
+        <p>El sistema genera automáticamente conclusiones y recomendaciones basadas en los datos:</p>
+        <ul>
+            <li>"El carril derecho cuenta con un 58% de daño severo, se recomienda intervención prioritaria"</li>
+            <li>"La falla más reportada en el tramo derecho es Piel de Cocodrilo con 43 registros"</li>
+            <li>"El área total afectada es de 1,247 m² con concentración mayor entre Km 12+200 y Km 12+800"</li>
+            <li>"El Tramo 5 presenta el mejor estado general con solo 8% de fallas severas"</li>
+            <li>Alertas automáticas cuando se superan umbrales críticos</li>
+        </ul>
+
+        <h4>5.4 Visualizaciones Gráficas</h4>
+        <ul>
+            <li>Gráficos de barras para distribución de severidad</li>
+            <li>Gráficos de pastel para distribución por tipo de falla</li>
+            <li>Gráficos de línea para evolución temporal</li>
+            <li>Mapas de calor para concentración de daños</li>
+        </ul>
+
+        <h4>5.5 Exportación de Reportes</h4>
+        <ul>
+            <li><strong>Formato PDF:</strong> Reporte profesional con logo, gráficos y tablas</li>
+            <li><strong>Formato Excel:</strong> Datos tabulados para análisis posterior</li>
+            <li><strong>Incluye:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Portada con información del proyecto</li>
+                    <li>Resumen ejecutivo</li>
+                    <li>Análisis estadístico completo</li>
+                    <li>Gráficos y visualizaciones</li>
+                    <li>Listado detallado de todas las fallas</li>
+                    <li>Fotografías de las fallas más críticas</li>
+                    <li>Recomendaciones de intervención</li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- CARACTERÍSTICAS ADICIONALES -->
+    <h2>4. Características Técnicas y Funcionalidades Adicionales</h2>
+
+    <div class="module-section">
+        <h3>4.1 Sistema de Usuarios y Permisos</h3>
+        <ul>
+            <li><strong>Autenticación segura:</strong> Sistema de login con encriptación</li>
+            <li><strong>Roles de usuario:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Administrador: Acceso total al sistema</li>
+                    <li>Inspector: Puede registrar y visualizar fallas</li>
+                    <li>Supervisor: Puede aprobar y generar reportes</li>
+                    <li>Consulta: Solo lectura de datos</li>
+                </ul>
+            </li>
+            <li><strong>Gestión de usuarios:</strong> Alta, baja y modificación de usuarios</li>
+            <li><strong>Registro de actividad:</strong> Log de acciones por usuario</li>
+        </ul>
+
+        <h3>4.2 Modo Offline</h3>
+        <ul>
+            <li>Capacidad de registrar fallas sin conexión a internet</li>
+            <li>Almacenamiento local temporal de datos y fotografías</li>
+            <li>Sincronización automática cuando se recupera la conexión</li>
+            <li>Indicador visual del estado de conexión</li>
+            <li>Cola de sincronización con gestión de conflictos</li>
+        </ul>
+
+        <h3>4.3 Responsive Design</h3>
+        <ul>
+            <li>Diseño móvil-first optimizado para smartphones y tablets</li>
+            <li>Adaptación automática a cualquier tamaño de pantalla</li>
+            <li>Interfaz táctil optimizada para uso en campo</li>
+            <li>Versión de escritorio para análisis detallado en oficina</li>
+        </ul>
+
+        <h3>4.4 Seguridad y Respaldos</h3>
+        <ul>
+            <li>Conexión segura mediante HTTPS/SSL</li>
+            <li>Encriptación de datos sensibles</li>
+            <li>Respaldo automático diario de base de datos</li>
+            <li>Protección contra inyección SQL y ataques XSS</li>
+            <li>Copias de seguridad de imágenes en almacenamiento en la nube</li>
+        </ul>
+
+        <h3>4.5 Notificaciones</h3>
+        <ul>
+            <li>Alertas cuando se registran fallas severas</li>
+            <li>Notificaciones de progreso de proyectos</li>
+            <li>Recordatorios de inspecciones pendientes</li>
+        </ul>
+    </div>
+
+    <!-- TECNOLOGÍAS -->
+    <h2>5. Stack Tecnológico Propuesto</h2>
+
+    <div class="tech-grid">
+        <div class="tech-item">
+            <strong>Frontend</strong>
+            HTML5, CSS3, JavaScript (ES6+), Diseño responsive mobile-first
+        </div>
+        <div class="tech-item">
+            <strong>Framework Frontend</strong>
+            Angular o React.js para interfaz interactiva y reactiva
+        </div>
+        <div class="tech-item">
+            <strong>Backend</strong>
+            Node.js + Express.js
+        </div>
+        <div class="tech-item">
+            <strong>Base de Datos</strong>
+            PostgreSQL con extensión PostGIS para datos geoespaciales
+        </div>
+        <div class="tech-item">
+            <strong>Mapas</strong>
+            Google Maps o OpenStreetMap API para visualización y geolocalización 
+        </div>
+        <div class="tech-item">
+            <strong>Almacenamiento</strong>
+            AWS S3 Storage para imágenes
+        </div>
+        <div class="tech-item">
+            <strong>Hosting</strong>
+            AWS, Google Cloud Platform o Vercel
+        </div>
+        <div class="tech-item">
+            <strong>Reportes</strong>
+            Librería jsPDF o similar para generación de PDF
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <strong>Nota:</strong> El stack tecnológico final será definido en conjunto con el cliente según sus preferencias, infraestructura existente y requisitos específicos de integración.
+    </div>
+
+    <!-- CRONOGRAMA -->
+    <h2>6. Cronograma de Desarrollo y Entrega</h2>
+
+    <p>
+        El desarrollo del proyecto se realizará de forma iterativa, entregando módulos funcionales progresivamente para permitir pruebas tempranas y retroalimentación del cliente.
+    </p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+                <strong>Semana 1-2: Análisis y Diseño</strong>
+                Refinamiento de requisitos, diseño de base de datos, arquitectura del sistema y mockups de interfaz de usuario
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+                <strong>Semana 3-4: Infraestructura y Autenticación</strong>
+                Configuración de servidores, base de datos, sistema de usuarios y autenticación
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+                <strong>Semana 5-6: Módulo de Proyectos</strong>
+                Desarrollo completo del sistema de gestión de proyectos y tramos
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+                <strong>Semana 7-9: Módulo de Registro de Fallas</strong>
+                Desarrollo del formulario de registro, integración de cámara, GPS y almacenamiento de imágenes
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">5</div>
+            <div class="timeline-content">
+                <strong>Semana 10-11: Dashboard y Mapa Interactivo</strong>
+                Implementación del dashboard principal y sistema de visualización en mapa con Google Maps
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">6</div>
+            <div class="timeline-content">
+                <strong>Semana 12-13: Módulo de Reportes</strong>
+                Desarrollo de análisis estadístico, gráficos y generación de reportes PDF/Excel
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">7</div>
+            <div class="timeline-content">
+                <strong>Semana 14: Modo Offline y Optimizaciones</strong>
+                Implementación de funcionalidad offline, optimización de rendimiento y responsive
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">8</div>
+            <div class="timeline-content">
+                <strong>Semana 15-16: Pruebas y Ajustes</strong>
+                Pruebas de usuario, corrección de bugs, ajustes de UI/UX según feedback
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">9</div>
+            <div class="timeline-content">
+                <strong>Semana 17: Despliegue y Capacitación</strong>
+                Despliegue en producción, capacitación de usuarios y entrega de documentación
+            </div>
+        </div>
+    </div>
+
+    <p style="margin-top: 1.5rem;">
+        <strong>Tiempo Total de Desarrollo:</strong> 17 semanas (aproximadamente 4 meses)
+    </p>
+
+    <div class="highlight-box">
+        <strong>Entregables durante el desarrollo:</strong>
+        <ul style="margin-top: 0.5rem;">
+            <li>Reuniones semanales de seguimiento</li>
+            <li>Acceso a entorno de desarrollo para pruebas continuas</li>
+            <li>Documentación técnica y de usuario</li>
+            <li>Código fuente completo</li>
+            <li>Manual de instalación y configuración</li>
+        </ul>
+    </div>
+
+    <!-- INVERSIÓN -->
+    <h2>7. Inversión Requerida</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Concepto</th>
+                <th>Detalle</th>
+                <th style="text-align: right;">Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Desarrollo Frontend</td>
+                <td>Interfaces, componentes, responsive design</td>
+                <td style="text-align: right;">$3,500,000</td>
+            </tr>
+            <tr>
+                <td>Desarrollo Backend</td>
+                <td>API REST, lógica de negocio, integración BD</td>
+                <td style="text-align: right;">$3,800,000</td>
+            </tr>
+            <tr>
+                <td>Base de Datos</td>
+                <td>Diseño, implementación, optimización</td>
+                <td style="text-align: right;">$800,000</td>
+            </tr>
+            <tr>
+                <td>Integración Google Maps</td>
+                <td>Mapas interactivos, marcadores, geolocalización</td>
+                <td style="text-align: right;">$600,000</td>
+            </tr>
+            <tr>
+                <td>Módulo de Reportes</td>
+                <td>Análisis, gráficos, generación PDF/Excel</td>
+                <td style="text-align: right;">$900,000</td>
+            </tr>
+            <tr>
+                <td>Sistema de Autenticación</td>
+                <td>Login, permisos, gestión de usuarios</td>
+                <td style="text-align: right;">$500,000</td>
+            </tr>
+            <tr>
+                <td>Modo Offline</td>
+                <td>Sincronización, almacenamiento local</td>
+                <td style="text-align: right;">$700,000</td>
+            </tr>
+            <tr>
+                <td>Pruebas y QA</td>
+                <td>Testing, corrección de bugs, optimización</td>
+                <td style="text-align: right;">$800,000</td>
+            </tr>
+            <tr>
+                <td>Documentación y Capacitación</td>
+                <td>Manuales, videos tutoriales, sesión de capacitación</td>
+                <td style="text-align: right;">$400,000</td>
+            </tr>
+            <tr>
+                <td>Despliegue en Producción</td>
+                <td>Configuración servidor, dominio, SSL</td>
+                <td style="text-align: right;">$300,000</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold; font-size: 1.1rem;">
+                <td colspan="2">SUBTOTAL</td>
+                <td style="text-align: right;">$12,300,000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="price-box">
+        <h3>Inversión Total del Proyecto</h3>
+        <div class="price-amount">$12,300,000 COP</div>
+        <p class="price-note">
+            * Válido por 30 días<br>
+            * No incluye costos de hosting mensual ni licencias de Google Maps API
+        </p>
+    </div>
+
+    <!-- CONDICIONES COMERCIALES -->
+    <h2>8. Condiciones Comerciales</h2>
+
+    <div class="module-section">
+        <h3>8.1 Forma de Pago</h3>
+        <ul>
+            <li><strong>Primer pago (40%):</strong> $4,920,000 COP al firmar el contrato y dar inicio al proyecto</li>
+            <li><strong>Segundo pago (30%):</strong> $3,690,000 COP a la entrega del 50% del desarrollo (módulos 1, 2 y 3 completos)</li>
+            <li><strong>Pago final (30%):</strong> $3,690,000 COP a la entrega final y puesta en producción</li>
+        </ul>
+
+        <h3>8.2 Incluye</h3>
+        <ul class="feature-list">
+            <li>Desarrollo completo de todos los módulos descritos</li>
+            <li>Código fuente completo y documentado</li>
+            <li>1 año de dominio y certificado SSL incluido</li>
+            <li>3 meses de soporte técnico y corrección de bugs post-entrega</li>
+            <li>1 sesión de capacitación presencial o virtual (4 horas)</li>
+            <li>Manuales de usuario y administrador</li>
+            <li>2 revisiones mayores durante el desarrollo</li>
+            <li>Despliegue en servidor de producción</li>
+        </ul>
+
+        <h3>8.3 No Incluye</h3>
+        <ul>
+            <li>Costos de hosting mensual (estimado: $50,000 - $200,000 COP/mes según tráfico)</li>
+            <li>Licencia de Google Maps API si se supera el uso gratuito (Google ofrece $200 USD/mes gratis)</li>
+            <li>Integraciones con sistemas externos de terceros no mencionadas en esta cotización</li>
+            <li>Funcionalidades adicionales solicitadas después de la aprobación del alcance</li>
+            <li>Mantenimiento y actualizaciones después de los 3 meses de soporte incluido</li>
+        </ul>
+
+        <h3>8.4 Modificaciones al Alcance</h3>
+        <p>
+            Cualquier funcionalidad adicional o modificación al alcance definido después de la 
+            aprobación del proyecto será cotizada por separado mediante orden de cambio. Se 
+            estimará el tiempo adicional requerido y el costo correspondiente.
+        </p>
+
+        <h3>8.5 Propiedad Intelectual</h3>
+        <p>
+            Una vez completado el pago total del proyecto, el cliente tendrá la propiedad completa 
+            del código fuente y podrá modificarlo, distribuirlo o comercializarlo según considere 
+            conveniente.
+        </p>
+    </div>
+
+    <!-- SOPORTE -->
+    <h2>9. Soporte y Mantenimiento Post-Entrega</h2>
+
+    <div class="module-section">
+        <h3>9.1 Soporte Incluido (3 meses)</h3>
+        <ul>
+            <li>Corrección de bugs y errores de funcionamiento</li>
+            <li>Soporte técnico vía email/WhatsApp en horario laboral</li>
+            <li>Actualizaciones de seguridad críticas</li>
+            <li>Respaldo semanal de base de datos</li>
+        </ul>
+
+        <h3>9.2 Planes de Mantenimiento (Opcional)</h3>
+        <table style="margin-top: 1rem;">
+            <thead>
+                <tr>
+                    <th>Plan</th>
+                    <th>Incluye</th>
+                    <th style="text-align: right;">Costo Mensual</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Plan Básico</strong></td>
+                    <td>Monitoreo, respaldos, soporte por email, hasta 2 horas de ajustes/mes</td>
+                    <td style="text-align: right;">$250,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Plan Profesional</strong></td>
+                    <td>Todo lo anterior + soporte prioritario, hasta 8 horas de ajustes/mes, actualizaciones funcionales</td>
+                    <td style="text-align: right;">$600,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Plan Enterprise</strong></td>
+                    <td>Todo lo anterior + disponibilidad 24/7, hasta 20 horas de desarrollo/mes, nuevas funcionalidades</td>
+                    <td style="text-align: right;">$1,200,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GARANTÍAS -->
+    <h2>10. Garantías y Compromisos</h2>
+
+    <div class="module-section">
+        <ul class="feature-list">
+            <li><strong>Garantía de funcionamiento:</strong> 90 días de garantía contra defectos de programación desde la entrega final</li>
+            <li><strong>Código limpio y documentado:</strong> Todo el código seguirá mejores prácticas de desarrollo y estará debidamente comentado</li>
+            <li><strong>Confidencialidad:</strong> Firma de acuerdo de confidencialidad (NDA) si es requerido por el cliente</li>
+            <li><strong>Entrega puntual:</strong> Compromiso de cumplir con los plazos establecidos, notificando cualquier imprevisto con anticipación</li>
+            <li><strong>Comunicación constante:</strong> Reuniones semanales de seguimiento y acceso continuo a entorno de desarrollo</li>
+            <li><strong>Control de versiones:</strong> Todo el código estará versionado en Git para trazabilidad completa</li>
+        </ul>
+    </div>
+
+    <!-- SIGUIENTES PASOS -->
+    <h2>11. Próximos Pasos</h2>
+
+    <div class="module-section">
+        <p style="margin-bottom: 1rem;">Para dar inicio al proyecto, se requiere:</p>
+        <ol>
+            <li style="margin: 0.75rem 0;"><strong>Aprobación de la cotización:</strong> Confirmación formal del cliente sobre el alcance y costos</li>
+            <li style="margin: 0.75rem 0;"><strong>Firma de contrato:</strong> Formalización del acuerdo con términos y condiciones</li>
+            <li style="margin: 0.75rem 0;"><strong>Primer pago (40%):</strong> Transferencia del anticipo para iniciar el desarrollo</li>
+            <li style="margin: 0.75rem 0;"><strong>Reunión de inicio (Kick-off):</strong> Sesión para afinar detalles finales y definir canales de comunicación</li>
+            <li style="margin: 0.75rem 0;"><strong>Provisión de información:</strong> Logo de la empresa, colores corporativos, contenido institucional si se requiere</li>
+        </ol>
+    </div>
+
+    <!-- VALIDEZ -->
+    <div class="highlight-box" style="margin: 2rem 0;">
+        <p style="margin: 0;"><strong>Validez de la Cotización:</strong> Esta propuesta económica es válida por <strong>30 días calendario</strong> a partir de la fecha de emisión. Después de este periodo, los costos y plazos están sujetos a revisión.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            Agradezco la oportunidad de presentar esta propuesta. Quedo a disposición para aclarar 
+            cualquier duda o ampliar la información requerida.
+        </p>
+        
+        <div class="signature">
+            <p>Atentamente,</p>
+            <p style="margin-top: 2rem;"><strong>Miguel Rodriguez</strong></p>
+            <p><em>Ingeniero Desarrollador Senior | Epam Solution Engineer</em></p>
+            
+            <div class="contact" style="margin-top: 1.5rem;">
+                <p>📧 miguel.a.rodriguez.r@gmail.com</p>
+                <p>📱 3182979235</p>
+                <p>🌐 migu.es</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
